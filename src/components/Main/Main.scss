@@ -1,0 +1,43 @@
+.main{
+    width: 100%;
+    height: 100%;
+    &__content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__container{
+        width: 80%;
+        display: flex;
+        margin-top: 50px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    &__card{
+        width: 30%;
+        height: 340px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__btn{
+        width: 400px;
+        height: 60px;
+        margin-bottom: 20px;
+        background: #e82f22;
+        cursor: pointer;
+        color:white;
+        border: 1px solid black;
+    }
+    .card{
+        &__title{
+            margin-bottom: 20px;
+        }
+        &__img{
+            width: 90%;
+            height: 60%;
+            margin-bottom: 20px;
+            object-fit: contain;
+        }
+    }
+}
