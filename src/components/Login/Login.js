@@ -29,6 +29,7 @@ export const Login = observer(() => {
             })
             localStorage.setItem('login', UserStore.login)
             localStorage.setItem('user', JSON.stringify(UserStore.user.user))
+            localStorage.setItem('token', JSON.stringify(UserStore.user.auth))
             requestTransform(UserStore.user.auth)
             navigate("/news")
         }

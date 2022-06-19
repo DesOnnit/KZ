@@ -5,11 +5,12 @@ import {
   Route,
   useNavigate
 } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import UserStore from './utils/store/UserData'
 import { Main } from './components/Main/Main'
 import { observer } from "mobx-react"
 import { NewsPage } from './components/NewsPage/NewsPage';
+import {requestTransform} from './utils/auth'
 const App = observer(() => {
   const { login } = UserStore
   let navigate = useNavigate();
@@ -22,6 +23,12 @@ const App = observer(() => {
   useEffect(() => {
     loginCheck()
   }, [login])
+  useEffect(()=>{
+    if(JSON.parse(localStorage.getItem('token'))){
+      let data = JSON.parse(localStorage.getItem('token'));
+      requestTransform(data)
+    }
+  },[])
   return (
     <div className="App">
       <Routes>
