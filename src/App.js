@@ -3,39 +3,28 @@ import './App.css';
 import {
   Routes,
   Route,
-  useNavigate
+  Navigate
 } from "react-router-dom";
-import { useEffect } from 'react';
 import { Main } from './components/Main/Main'
 import { NewsPage } from './components/NewsPage/NewsPage';
-import {requestTransform} from './utils/auth'
 import { useSelector } from 'react-redux'
+import { ProtectedRouter } from './components/ProtectedRouter/ProtectedRouter';
 
 const App = (() => {
   const login = useSelector(state => state.login)
-  const data = useSelector(state => state.auth)
-  let navigate = useNavigate();
-  const loginCheck = () => {
-    if (login) {
-    } else {
-      navigate("/login")
-    }
-  } 
-  useEffect(() => {
-    loginCheck()
-  }, [login])
-  
- 
   return (
     <div className="App">
       <Routes>
-        {login
-          ?
-          <>
-            <Route path="/news" element={<Main />} />
-            <Route path={`/news/:id`} element={<NewsPage />} />
-          </>
-          : <Route path="/login" element={<Login />} />}
+        <Route path="/login" element={login
+        ?<Navigate to='/news' />
+        :<Login />} />
+        <Route path="/news" element={
+          <ProtectedRouter>
+            <Main />
+          </ProtectedRouter>
+        }/>
+        <Route path={`/news/:id`} element={<NewsPage />} />
+        <Route path="*" element={<Navigate to='/news' />} />
       </Routes>
     </div>
   );

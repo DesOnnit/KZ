@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import './Login.css';
-import { auth, requestTransform } from '../../utils/auth'
+import { auth } from '../../utils/auth'
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 export const Login = (() => {
-    const data = useSelector(state => state.auth)
     const dispatch = useDispatch()
+    
     let navigate = useNavigate();
     const [values, setValues] = useState({})
     function handleChange(e) {
@@ -24,14 +24,13 @@ export const Login = (() => {
             dispatch({
                 type: 'login', payload: {
                     user: response.data.user,
-                    auth: {
+                    data: {
                         accessToken: response.headers['access-token'],
                         client: response.headers.client,
                         uid: response.headers.uid
                     }
                 }
             })
-            requestTransform(data)
             navigate("/news")
         }
     }
@@ -43,7 +42,7 @@ export const Login = (() => {
                     <input className='form__input' name='email' value={values.name} type='email' placeholder='Введите ваш e-mail' onChange={handleChange} />
                     <input className='form__input' name='password' value={values.name} type='password' placeholder='Введите ваш пароль' onChange={handleChange} />
                 </div>
-                <button className='form__button' type='submit'>войти</button>
+                <button className='form__button' type='submit'>войти</button>         
             </form>
         </section>
     )

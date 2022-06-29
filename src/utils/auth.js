@@ -1,3 +1,4 @@
+import {storeAuth, store} from './redux-store/store'
 import { create } from 'apisauce'
 
 const api = create({
@@ -12,12 +13,15 @@ export const news = () => {
 export const oneNews = (id) => {
   return api.get(`/news/${id}`)
 }
-export const requestTransform = (data) => {
+
+function storeCheck() {
+  const data = storeAuth(store.getState())
   if (data) {
-    api.addRequestTransform(request => {
-      request.headers['access-token'] = data.accessToken
-      request.headers['client'] = data.client
-      request.headers['uid'] = data.uid
-    })
+      api.addRequestTransform(request => {
+          request.headers['access-token'] = data.accessToken
+          request.headers['client'] = data.client
+          request.headers['uid'] = data.uid
+      })
   }
 }
+store.subscribe(storeCheck)

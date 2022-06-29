@@ -5,21 +5,15 @@ import { Header } from '../Header/Header'
 import {
     useNavigate
 } from "react-router-dom";
-import { useSelector } from 'react-redux'
-import { requestTransform } from '../../utils/auth'
 export const Main = ((props) => {
-    const data = useSelector(state => state.auth)
     const [uncos, setUncos] = useState()
     const [last, setLast] = useState(10)
     const [first, setFirst] = useState(0)
     const [message, setMessage] = useState('')
     const navigate = useNavigate()
     const getNews = async () => {
-        if (data) {
-            requestTransform(data)
-            let response = await news()
-            setUncos(response.data.news.concat(response.data.news).concat(response.data.news))
-        }
+        let response = await news()
+        setUncos(response.data.news.concat(response.data.news).concat(response.data.news))
     }
     useEffect(() => {
         getNews()
@@ -54,7 +48,7 @@ export const Main = ((props) => {
                             </div>
                         ))}
                     </div>
-                    {last > uncos.length+10
+                    {last > uncos.length + 10
                         ? ''
                         : <button className="main__btn" onClick={moreNews}>Больше новостей</button>
                     }

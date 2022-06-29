@@ -3,18 +3,12 @@ import './NewsPage.css';
 import { oneNews } from '../../utils/auth'
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux'
-import { requestTransform } from '../../utils/auth'
 export const NewsPage = (() => {
-    const data = useSelector(state => state.auth)
     const [news, setNews] = useState({})
     let { id } = useParams();
     const getNews = async () => {
-        if (data) {
-            requestTransform(data)
             let response = await oneNews(id)
             setNews(response.data.news)
-        }
     }
     useEffect(() => {
         getNews()
