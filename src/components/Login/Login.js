@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import './Login.css';
 import { auth, requestTransform } from '../../utils/auth'
-import UserStore from '../../utils/store/UserData';
-import { observer } from "mobx-react"
 import { useNavigate } from "react-router-dom";
-export const Login = observer(() => {
+import { useSelector, useDispatch } from 'react-redux'
+
+export const Login = (() => {
+    const data = useSelector(state => state.auth)
+    const dispatch = useDispatch()
     let navigate = useNavigate();
     const [values, setValues] = useState({})
     function handleChange(e) {
@@ -19,18 +21,17 @@ export const Login = observer(() => {
         e.preventDefault();
         const response = await auth(email, password);
         if (response.ok) {
-            UserStore.handleLogin({
-                user: response.data.user,
-                auth: {
-                    accessToken: response.headers['access-token'],
-                    client: response.headers.client,
-                    uid: response.headers.uid
+            dispatch({
+                type: 'login', payload: {
+                    user: response.data.user,
+                    auth: {
+                        accessToken: response.headers['access-token'],
+                        client: response.headers.client,
+                        uid: response.headers.uid
+                    }
                 }
             })
-            localStorage.setItem('login', UserStore.login)
-            localStorage.setItem('user', JSON.stringify(UserStore.user.user))
-            localStorage.setItem('token', JSON.stringify(UserStore.user.auth))
-            requestTransform(UserStore.user.auth)
+            requestTransform(data)
             navigate("/news")
         }
     }

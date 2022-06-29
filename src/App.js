@@ -6,29 +6,26 @@ import {
   useNavigate
 } from "react-router-dom";
 import { useEffect } from 'react';
-import UserStore from './utils/store/UserData'
 import { Main } from './components/Main/Main'
-import { observer } from "mobx-react"
 import { NewsPage } from './components/NewsPage/NewsPage';
 import {requestTransform} from './utils/auth'
-const App = observer(() => {
-  const { login } = UserStore
+import { useSelector } from 'react-redux'
+
+const App = (() => {
+  const login = useSelector(state => state.login)
+  const data = useSelector(state => state.auth)
   let navigate = useNavigate();
   const loginCheck = () => {
     if (login) {
     } else {
       navigate("/login")
     }
-  }
+  } 
   useEffect(() => {
     loginCheck()
   }, [login])
-  useEffect(()=>{
-    if(JSON.parse(localStorage.getItem('token'))){
-      let data = JSON.parse(localStorage.getItem('token'));
-      requestTransform(data)
-    }
-  },[])
+  
+ 
   return (
     <div className="App">
       <Routes>
