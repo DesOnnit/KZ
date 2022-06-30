@@ -13,18 +13,3 @@
       -ms-flex-align: center;
           align-items: center;
 }
-.news-page__img {
-  width: 100%;
-  height: 70%;
-  margin: 20px 0;
-}
-.news-page__btn {
-  margin-top: 20px;
-  width: 400px;
-  height: 60px;
-  margin-bottom: 20px;
-  background: #e82f22;
-  cursor: pointer;
-  color: white;
-  border: 1px solid black;
-}

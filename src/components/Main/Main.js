@@ -5,6 +5,8 @@ import { Header } from '../Header/Header'
 import {
     useNavigate
 } from "react-router-dom";
+import { ActionCard } from '../UI/Card/Card';
+import { Btn } from '../UI/Button/Button';
 export const Main = ((props) => {
     const [uncos, setUncos] = useState()
     const [last, setLast] = useState(10)
@@ -19,9 +21,6 @@ export const Main = ((props) => {
         getNews()
     }, [])
 
-    function createMarkup(item) {
-        return { __html: item.body };
-    }
     function moreNews() {
         if (last > uncos.length) {
             setFirst(0)
@@ -40,17 +39,15 @@ export const Main = ((props) => {
             {uncos
                 ? <div className="main__content">
                     <div className="main__container">
-                        {uncos.slice(first, last).map((el) => (
-                            <div className="main__card" onClick={() => showNews(el)}>
-                                <h2 className="card__title">{el.title}</h2>
-                                <img src={el.image_url} className="card__img" alt={el.title} />
-                                <h3 dangerouslySetInnerHTML={createMarkup(el)}></h3>
-                            </div>
+                        {uncos.slice(first, last).map((card) => (
+                            <ActionCard
+                                showNews={showNews}
+                                card={card} />
                         ))}
                     </div>
                     {last > uncos.length + 10
                         ? ''
-                        : <button className="main__btn" onClick={moreNews}>Больше новостей</button>
+                        : <Btn type="button" onClick={moreNews} text="Больше новостей" />
                     }
                     <h1>{message}</h1>
                 </div>

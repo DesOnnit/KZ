@@ -3,29 +3,29 @@ import './NewsPage.css';
 import { oneNews } from '../../utils/auth'
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { ActionCard } from '../UI/Card/Card';
+import { Btn } from '../UI/Button/Button';
 export const NewsPage = (() => {
     const [news, setNews] = useState({})
     let { id } = useParams();
     const getNews = async () => {
-            let response = await oneNews(id)
-            setNews(response.data.news)
+        let response = await oneNews(id)
+        setNews(response.data.news)
     }
     useEffect(() => {
         getNews()
     }, [])
-    function createMarkup() {
-        return { __html: news.body };
-    }
     const navigate = useNavigate()
     return (
         <div className='news-page'>
             <Header />
             {news
-                ? <div className="news-page__card">
-                    <h2 className="news-page__title">{news.title}</h2>
-                    <img src={news.image_url} className="news-page__img" alt={news.title} />
-                    <h3 dangerouslySetInnerHTML={createMarkup()}></h3>
-                    <button className="news-page__btn" onClick={() => navigate('/news')}>Вернуться ко всем новостям</button>
+                ?
+                <div className="news-page__card">
+                    <ActionCard
+                        width="50%"
+                        card={news} />
+                    <Btn onClick={() => navigate('/news')} text="Вернуться ко всем новостям" />
                 </div>
                 : ''
             }

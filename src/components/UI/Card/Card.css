@@ -1,0 +1,9 @@
+.card {
+  width: 30%;
+  margin-bottom: 20px;
+}
+.card__img {
+  height: 160px;
+  -o-object-fit: contain !important;
+     object-fit: contain !important;
+}

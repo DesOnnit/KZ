@@ -3,7 +3,9 @@ import './Login.css';
 import { auth } from '../../utils/auth'
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux'
-
+import { Input } from '../UI/Input/Input';
+import { Btn } from '../UI/Button/Button';
+import Box from '@mui/material/Box';
 export const Login = (() => {
     const dispatch = useDispatch()
     
@@ -39,10 +41,10 @@ export const Login = (() => {
             <form className="login__form" onSubmit={handleLogin}>
                 <h2 className="form__title">Вход</h2>
                 <div className="form__inputs">
-                    <input className='form__input' name='email' value={values.name} type='email' placeholder='Введите ваш e-mail' onChange={handleChange} />
-                    <input className='form__input' name='password' value={values.name} type='password' placeholder='Введите ваш пароль' onChange={handleChange} />
+                    <Input name='email' value={values.email ||''} type='email' label='Введите ваш e-mail'onChange={handleChange}/>
+                    <Input name='password' value={values.password ||''} type='password'label='Введите ваш пароль' onChange={handleChange}/>
                 </div>
-                <button className='form__button' type='submit'>войти</button>         
+                <Btn className='form__button' type='submit' text='войти'/>      
             </form>
         </section>
     )
