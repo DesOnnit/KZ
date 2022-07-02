@@ -23,7 +23,7 @@ export const NewsPage = (() => {
                 ?
                 <div className="news-page__card">
                     <ActionCard
-                        width="50%"
+                        width="100%"
                         card={news} />
                     <Btn onClick={() => navigate('/news')} text="Вернуться ко всем новостям" />
                 </div>
