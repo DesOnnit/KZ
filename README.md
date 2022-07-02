@@ -4,16 +4,16 @@
 
 # Функционал:
 -Возможность аутнификации (пока пользователь не вошел в профиль,доступ к остальным страница ограничен)
-![Логин](https://github.com/DesOnnit/KZ/tree/master/readme/login.jpg)
+![Логин](https://github.com/DesOnnit/KZ/blob/master/readme/login.jpg)
 *Логин*: bullet2271293@gmail.com
 *Пароль*: beta1234
 -Когда пользователь вошел, открывается страница с каталогом новостей
-![Страница новостей](https://github.com/DesOnnit/KZ/tree/master/readme/main_page.jpg)
+![Страница новостей](https://github.com/DesOnnit/KZ/blob/master/readme/main_page.jpg)
 -Также присутствует navbar с аватаром пользователя, его ник-неймом и кнопкой выхода из системы
 -Новости выводятся по 10 штук, когда новостей больше нет,кнопка пропадает и появляется оповещающее сообщение
-![Страница новостей](https://github.com/DesOnnit/KZ/tree/master/readme/paginate.jpg)
+![Страница новостей](https://github.com/DesOnnit/KZ/blob/master/readme/paginate.jpg)
 -При нажатии на каждую новость открывается отдельная страница именно этой новости, есть возможность вернуться обратно ко всем новостям
-![Страница новостей](https://github.com/DesOnnit/KZ/tree/master/readme/news.jpg)
+![Страница новостей](https://github.com/DesOnnit/KZ/blob/master/readme/news.jpg)
 ## Инструкция по установке: 
 
 ```
